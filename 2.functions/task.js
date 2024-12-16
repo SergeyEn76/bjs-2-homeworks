@@ -4,16 +4,14 @@ function getArrayParams(...arr) {
   let max = arr[0];
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
-    let temp = arr[i];
-    if (temp < min) {
-      min = temp;
-    } else if (temp > max) {
-      max = temp;
+    if (arr[i] < min) {
+      min = arr[i];
+    } else if (arr[i] > max) {
+      max = arr[i];
     }
-    sum += temp;
+    sum += arr[i];
   }
-  let avg = (sum / arr.length).toFixed(2);
-  avg = parseFloat(avg);
+  let avg = parseFloat((sum / arr.length).toFixed(2));
   return { min: min, max: max, avg: avg };
 }
 
@@ -26,17 +24,13 @@ function summElementsWorker(...arr) {
 }
 
 function differenceMaxMinWorker(...arr) {
-  if (isNaN(...arr) == true) {
+  if (arr.length == 0) {
     return 0;
-  } else {
-    return Math.max(...arr) - Math.min(...arr);
-  }
+  } 
+  return Math.max(...arr) - Math.min(...arr);
 }
 
 function differenceEvenOddWorker(...arr) {
-  if (isNaN(...arr) == true) {
-    return 0;
-  }
   let sumEvenElement = 0;
   let sumOddElement = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -50,7 +44,7 @@ function differenceEvenOddWorker(...arr) {
 }
 
 function averageEvenElementsWorker(...arr) {
-  if (isNaN(...arr) == true) {
+  if (arr.length == 0) {
     return 0;
   }
   let sumEvenElement = 0;
@@ -66,7 +60,7 @@ function averageEvenElementsWorker(...arr) {
 }
 
 function makeWork (arrOfArr, func) {
-  let maxWorkerResult = arrOfArr[0][0];
+  let maxWorkerResult = func(...arrOfArr[0]);
   for (let i = 0; i < arrOfArr.length; i++) {
     let temp = func(...arrOfArr[i]);
     if (temp > maxWorkerResult) {
